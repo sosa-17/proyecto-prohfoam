@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         <?php foreach($all_usuarios as $a_user): ?>
-          <?php if($a_user['nivel_usuario'] === '4'): ?>
+          <?php if($a_user['nivel_usuario'] === '3'): ?>
           <tr>
            <td class="text-center"><?php echo count_id();?></td>
            <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
