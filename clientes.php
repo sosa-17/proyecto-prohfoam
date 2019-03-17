@@ -30,8 +30,8 @@
             <th class="text-center" style="width: 50px;">#</th>
             <th>Nombre </th>
             <th>Usuario</th>
-            <th>Direccion</th>
             <th>Correo</th>
+            <th>Direccion</th>
             <th class="text-center" style="width: 15%;">Rol de usuario</th>
             <th class="text-center" style="width: 10%;">Estado</th>
             <th style="width: 20%;">Último login</th>
