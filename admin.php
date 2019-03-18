@@ -57,7 +57,7 @@
     <div class="col-md-3">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-yellow">
-          <i class="glyphicon glyphicon-usd"></i>
+          <i class="glyphicon glyphicon-bookmark"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $c_sale['total']; ?></h2>
@@ -121,12 +121,12 @@
          <tr>
            <td class="text-center"><?php echo count_id();?></td>
            <td>
-            <a href="edit_sale.php?id=<?php echo (int)$recent_sale['id']; ?>">
+            <a href="editar_venta.php?id=<?php echo (int)$recent_sale['id']; ?>">
              <?php echo remove_junk(first_character($recent_sale['name'])); ?>
            </a>
            </td>
            <td><?php echo remove_junk(ucfirst($recent_sale['date'])); ?></td>
-           <td>$<?php echo remove_junk(first_character($recent_sale['precio'])); ?></td>
+           <td>lps <?php echo remove_junk(first_character($recent_sale['precio'])); ?></td>
         </tr>
 
        <?php endforeach; ?>
@@ -147,7 +147,7 @@
 
         <div class="list-group">
       <?php foreach ($recent_productos as  $recent_product): ?>
-            <a class="list-group-item clearfix" href="edit_product.php?id=<?php echo    (int)$recent_product['id'];?>">
+            <a class="list-group-item clearfix" href="editar_producto.php?id=<?php echo    (int)$recent_product['id'];?>">
                 <h4 class="list-group-item-heading">
                  <?php if($recent_product['media_id'] === '0'): ?>
                     <img class="img-avatar img-circle" src="uploads/productos/no_image.jpg" alt="">
@@ -156,7 +156,7 @@
                 <?php endif;?>
                 <?php echo remove_junk(first_character($recent_product['name']));?>
                   <span class="label label-warning pull-right">
-                 $<?php echo (int)$recent_product['precio_venta']; ?>
+                 lps <?php echo (int)$recent_product['precio_venta']; ?>
                   </span>
                 </h4>
                 <span class="list-group-item-text pull-right">
