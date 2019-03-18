@@ -1,5 +1,5 @@
 <?php
-  require_once('includes/cargar.php');
+  require_once('cargar.php');
 
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name

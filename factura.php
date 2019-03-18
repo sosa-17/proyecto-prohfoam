@@ -16,7 +16,15 @@
 	<?php
 	$sales = find_all_sale();
 	?>
-  <div class="row">
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title></title>
+	</head>
+	<body>
+		<div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
@@ -110,7 +118,7 @@
             <span>Todas la ventas</span>
           </strong>
           <div class="pull-right">
-            <a href="add_sale.php" class="btn btn-primary">Agregar venta</a>
+            <a href="agregar_venta.php" class="btn btn-primary">Agregar venta</a>
           </div>
         </div>
         <div class="panel-body">
@@ -135,10 +143,10 @@
                <td class="text-center"><?php echo $sale['date']; ?></td>
                <td class="text-center">
                   <div class="btn-group">
-                     <a href="edit_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Edit" data-toggle="tooltip">
+                     <a href="editar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Edit" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-edit"></span>
                      </a>
-                     <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
+                     <a href="eliminar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-trash"></span>
                      </a>
                   </div>
@@ -168,8 +176,14 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/facturas.js"></script>
+
+	<?php include_once('layouts/footer.php'); ?>
+  <script type="text/javascript" src="js/clientes.js"></script>
+	</body>
+	</html>
+  
 	
-  </body>
-</html>
-  </div>
+
+
   <?php include_once('layouts/footer.php'); ?>
+  <script type="text/javascript" src="js/clientes.js"></script>
