@@ -3,8 +3,8 @@
 <?php
 $servername = "localhost";
 $database = "basenueva123";
-$username = "josue";
-$password = "legolas13";
+$username = "root";
+$password = "";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
  //Archivo verifica que el usario que intenta acceder a la URL esta logueado
