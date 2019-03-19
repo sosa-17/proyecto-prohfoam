@@ -2,7 +2,7 @@
   $page_title = 'Agregar grupo';
   require_once('includes/cargar.php');
   // Checkin What level user has permission to view this page
-   page_require_level(1);
+   page_require_level(2);
 ?>
 <?php
   if(isset($_POST['add'])){

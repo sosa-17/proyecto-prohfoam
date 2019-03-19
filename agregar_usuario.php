@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Agregar usuarios';
   require_once('includes/cargar.php');
-    page_require_level(1);
+    page_require_level(2);
   $groups = find_all('grupo_usuario');
   //$idusu=maxid();
 ?>

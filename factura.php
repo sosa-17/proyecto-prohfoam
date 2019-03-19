@@ -1,10 +1,12 @@
 <?php
   $page_title = 'Lista de productos';
   require_once('includes/cargar.php');
+   page_require_level(2);
   // Checkin What level user has permission to view this page
- 
+  
 	$products = join_product_table();
 	$all_users = find_all('users');
+
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -30,6 +32,33 @@
      </div>
     <div class="col-md-12">
       <div class="panel panel-default">
+      	<?php if (isset($_GET["a"])) {
+      		?>
+      	
+      	<div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>¡Bien hecho!</strong>
+            <?php
+            $mensaje=$_GET["a"];
+            echo $mensaje;
+              
+              ?>
+        </div>
+         <?php }else if (isset($_GET["b"])) {
+         	?>
+         	<div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>¡ERROR!</strong> <!--PRUEBO CON VAR DUMP QUE ME TIRE QUE HAY DENTRO-->
+          <?php
+            $mensaje=$_GET["b"];
+            echo $mensaje;
+              
+              ?>
+     		 </div>
+     		 <?php 
+     		 } 
+     		  ?>
+         
         <div class="panel-heading clearfix">
 				<strong>
             <span class="glyphicon glyphicon-th"></span>

@@ -8,12 +8,12 @@
 			<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Agregar nuevo cliente</h4>
 		  </div>
 		  <div class="modal-body">
-			<form class="form-horizontal" method="POST" id="guardar_cliente" name="guardar_cliente">
+			<form class="form-horizontal" method="POST" action="ajax/nuevo_cliente.php">
 			<div id="resultados_ajax"></div>
 			  <div class="form-group">
 				<label for="nombre" class="col-sm-3 control-label">Nombre</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="full_name" name="full_name" required>
+				  <input type="text" class="form-control" id="full-name" name="full-name" required>
 				</div>
 				</div>
 				<div class="form-group">
@@ -58,7 +58,7 @@
 			 
 			 <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			<button type="submit" class="btn btn-primary" id="guardar_datos">Guardar datos</button>
+			<button type="submit" class="btn btn-primary">Guardar datos</button>
 		  </div>
 		  </form>
 			 
