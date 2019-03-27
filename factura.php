@@ -1,64 +1,85 @@
 <?php
   $page_title = 'Lista de productos';
   require_once('includes/cargar.php');
-   page_require_level(2);
   // Checkin What level user has permission to view this page
-  
+  page_require_level(2);
 	$products = join_product_table();
-	$all_users = find_all('users');
-
+	$all_users = find_all_user();
 ?>
-<?php include_once('layouts/header.php'); ?>
+
 
 <?php 
 			include("modal/buscar_productos.php");
 			include("modal/registro_clientes.php");
-			include("modal/registro_usuarios.php");
+
 	?>
 	<?php
-	$sales = find_all_sale();
+	$sales = find_all_factura();
 	?>
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title></title>
-	</head>
-	<body>
-		<div class="row">
+	<?php
+  if(isset($_POST['add_user'])){
+
+		$req_fields = array('nombre','usuario','email','direccion','contraseña');
+		validate_fields($req_fields);
+
+   if(empty($errors)){
+           $name   = remove_junk($db->escape($_POST['nombre']));
+       $nombre_usuario   = remove_junk($db->escape($_POST['usuario']));
+			 $email   = remove_junk($db->escape($_POST['email']));
+			 $direccion   = remove_junk($db->escape($_POST['direccion']));
+			 $password   = remove_junk($db->escape($_POST['contraseña']));
+     
+       $password = sha1($password);
+        $query = "INSERT INTO usuarios (";
+        $query .="name,nombre_usuario,password,nivel_usuario,estado";
+        $query .=") VALUES (";
+        $query .=" '{$name}', '{$nombre_usuario}', '{$password}', '3','1'";
+        $query .=")";
+
+        $consu=$db->query($query);
+
+        //--------------------------------------------------se abre conexion-----------------------------------------------------
+
+        $servername = "localhost";
+        $database = "basenueva123";
+        $user = "root";
+        $password = "";
+        // Create connection
+        $conn = mysqli_connect($servername, $user, $password, $database);
+
+         $idDireccion=mysqli_query($conn,"SELECT MAX(id) FROM usuarios ");
+         if ($row = mysqli_fetch_row($idDireccion)) {
+            $id = trim($row[0]);
+         }
+         //echo $id;
+
+          mysqli_close($conn);
+
+//-------------------------------------------------------------------------------------------------------------------------------------
+        $sql="INSERT INTO datospersonales(email,direccion,usuarios_id) VALUES ('$_POST[email]','$_POST[direccion]',$id)";
+
+        $db->query($sql);
+        if($consu){
+          $session->msg('s'," Cuenta de usuario ha sido creada");
+          redirect('factura.php', false);
+        } else {
+          //failed
+          $session->msg('d',' No se pudo crear la cuenta.');
+          redirect('factura.php', false);
+        }
+   } else {
+     $session->msg("d", $errors);
+      redirect('factura.php',false);
+   }
+ }
+?>
+	<?php include_once('layouts/header.php'); ?>
+  <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
      </div>
     <div class="col-md-12">
       <div class="panel panel-default">
-      	<?php if (isset($_GET["a"])) {
-      		?>
-      	
-      	<div class="alert alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>¡Bien hecho!</strong>
-            <?php
-            $mensaje=$_GET["a"];
-            echo $mensaje;
-              
-              ?>
-        </div>
-         <?php }else if (isset($_GET["b"])) {
-         	?>
-         	<div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>¡ERROR!</strong> <!--PRUEBO CON VAR DUMP QUE ME TIRE QUE HAY DENTRO-->
-          <?php
-            $mensaje=$_GET["b"];
-            echo $mensaje;
-              
-              ?>
-     		 </div>
-     		 <?php 
-     		 } 
-     		  ?>
-         
         <div class="panel-heading clearfix">
 				<strong>
             <span class="glyphicon glyphicon-th"></span>
@@ -71,7 +92,7 @@
 				<div class="form-group row">
 				  <label for="nombre_cliente" class="col-md-1 control-label">Cliente</label>
 				  <div class="col-md-3">
-					  <input type="text" class="form-control input-sm" id="nombre_cliente" placeholder="Selecciona un cliente" required>
+					  <input type="text" class="form-control input-sm" id="nombre_cliente" placeholder="Selecciona un vendedor" required>
 					  <input id="id_cliente" type='hidden'>	
 				  </div>
 				  <label for="tel1" class="col-md-1 control-label">Teléfono</label>
@@ -86,10 +107,10 @@
 						<div class="form-group row">
 							<label for="empresa" class="col-md-1 control-label">Vendedor</label>
 							<div class="col-md-3">
-								<select class="form-control input-sm" id="id_vendedor">
-								<?php  foreach ($all_users as $user): ?>
+								<select class="form-control input-sm" id="id_vendedor" disabled>
+								<?php  foreach ($all_users as $usuarios): ?>
                       <option value="<?php echo (int)$user['id'] ?>">
-                        <?php echo $user['username'] ?></option>
+                        <?php echo $user['nombre_usuario'] ?></option>
                     <?php endforeach; ?>
 								</select>
 							</div>
@@ -115,7 +136,7 @@
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoCliente">
 						 <span class="glyphicon glyphicon-user"></span> Nuevo cliente
 						</button>
-						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#agregarProducto">
 						 <span class="glyphicon glyphicon-search"></span> Agregar productos
 						</button>
 						<button type="submit" class="btn btn-default">
@@ -131,10 +152,10 @@
 		  <div class="row-fluid">
 			
 			<div class="col-md-12">
-			<?php include_once('layouts/header.php'); ?>
+
 <div class="row">
   <div class="col-md-6">
-    <?php echo display_msg($msg); ?>
+
   </div>
 </div>
 </div>
@@ -144,11 +165,9 @@
         <div class="panel-heading clearfix">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Todas la ventas</span>
+            <span>Detalle de Factura</span>
           </strong>
-          <div class="pull-right">
-            <a href="agregar_venta.php" class="btn btn-primary">Agregar venta</a>
-          </div>
+          
         </div>
         <div class="panel-body">
           <table class="table table-bordered table-striped">
@@ -157,22 +176,24 @@
                 <th class="text-center" style="width: 50px;">#</th>
                 <th> Nombre del producto </th>
                 <th class="text-center" style="width: 15%;"> Cantidad</th>
-                <th class="text-center" style="width: 15%;"> Total </th>
-                <th class="text-center" style="width: 15%;"> Fecha </th>
+                <th class="text-center" style="width: 15%;"> Precio </th>
+                <th class="text-center" style="width: 15%;"> SUB-TOTAL </th>
                 <th class="text-center" style="width: 100px;"> Acciones </th>
              </tr>
             </thead>
            <tbody>
-             <?php foreach ($sales as $sale):?>
+             <?php 
+             $total=0;
+             foreach ($sales as $sale):?>
              <tr>
                <td class="text-center"><?php echo count_id();?></td>
                <td><?php echo remove_junk($sale['name']); ?></td>
-               <td class="text-center"><?php echo (int)$sale['qty']; ?></td>
-               <td class="text-center"><?php echo remove_junk($sale['price']); ?></td>
-               <td class="text-center"><?php echo $sale['date']; ?></td>
+               <td class="text-center"><?php echo (int)$sale['cant']; ?></td>
+               <td class="text-center"><?php echo remove_junk($sale['precio']); ?></td>
+               <td class="text-center"><?php echo $sale['total']; ?></td>
                <td class="text-center">
                   <div class="btn-group">
-                     <a href="editar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Edit" data-toggle="tooltip">
+                     <a href="editar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-primary btn-xs"  title="Edit" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-edit"></span>
                      </a>
                      <a href="eliminar_venta.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
@@ -181,9 +202,40 @@
                   </div>
                </td>
              </tr>
-             <?php endforeach;?>
+
+             <?php
+             
+            $total+=$sale['total'];
+
+            endforeach;?>
+            <?php
+            $impto=($total*0.15);
+            $total_pagar=($total+$impto);
+
+    
+
+            ?>
            </tbody>
          </table>
+         
+         <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 80%;"> SUB-TOTAL </th>
+                <th class="text-center"> <?php echo $total; ?></th>
+             </tr>
+             <tr>
+                <th class="text-center" style="width: 75%;"> ISV(%) </th>
+                <th class="text-center"> <?php echo  $impto; ?></th>
+             </tr>
+             <tr>
+                <th class="text-center" style="width: 75%;">TOTAL-PAGAR </th>
+                <th class="text-center"> <?php echo $total_pagar; ?></th>
+             </tr>
+            </thead>
+        
+         </table>
+         </div>
         </div>
       </div>
     </div>
@@ -205,14 +257,8 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/facturas.js"></script>
-
-	<?php include_once('layouts/footer.php'); ?>
-  <script type="text/javascript" src="js/clientes.js"></script>
-	</body>
-	</html>
-  
 	
-
-
+  </body>
+</html>
+  </div>
   <?php include_once('layouts/footer.php'); ?>
-  <script type="text/javascript" src="js/clientes.js"></script>

@@ -1,8 +1,8 @@
 <?php //JELSYN 3-04-19 10pm
 	class Conexion{
 		private $host = "localhost";
-		private $usuario = "root";
-		private $password = "";
+		private $usuario = "josue";
+		private $password = "legolas13";
 		private $baseDatos = "basenueva123";
 		private $puerto = 3306;
 		private $link;

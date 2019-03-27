@@ -2,7 +2,7 @@
   $page_title = 'Edit sale';
   require_once('includes/cargar.php');
   // Checkin What level user has permission to view this page
-   page_require_level(3);
+   page_require_level(2);
 ?>
 <?php
 $sale = find_by_id('ventas',(int)$_GET['id']);

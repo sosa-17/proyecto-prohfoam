@@ -338,6 +338,15 @@ function tableExists($table){
    $sql .= " ORDER BY s.date DESC";
    return find_by_sql($sql);
  }
+
+ function find_all_factura(){
+  global $db;
+  $sql  = "SELECT s.id,s.cant,s.precio,s.date,p.name,(s.cant*s.precio)as total";
+  $sql .= " FROM ventas s";
+  $sql .= " LEFT JOIN productos p ON s.producto_id = p.id";
+  $sql .= " GROUP BY s.id,s.cant,s.precio,s.date,p.name,total";
+  return find_by_sql($sql);
+}
  /*--------------------------------------------------------------*/
  /* Function for Display Recent sale
  /*--------------------------------------------------------------*/
