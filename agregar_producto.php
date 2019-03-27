@@ -2,7 +2,7 @@
   $page_title = 'Agregar producto';
   require_once('includes/cargar.php');
   // Checkin What level user has permission to view this page
-  page_require_level(2);
+  page_require_level(1);
   $all_categorias = find_all('categorias');
   $all_photo = find_all('media');
 ?>
@@ -106,7 +106,7 @@
                  <div class="col-md-4">
                    <div class="input-group">
                      <span class="input-group-addon">
-                       <i class="glyphicon glyphicon-usd"></i>
+                       <i>Lps. </i>
                      </span>
                      <input type="number" class="form-control" name="buying-precio" placeholder="Precio de compra">
                      <span class="input-group-addon">.00</span>
@@ -115,7 +115,7 @@
                   <div class="col-md-4">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i>Lps. </i>
                       </span>
                       <input type="number" class="form-control" name="saleing-precio" placeholder="Precio de venta">
                       <span class="input-group-addon">.00</span>

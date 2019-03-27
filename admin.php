@@ -155,7 +155,7 @@
                   <img class="img-avatar img-circle" src="uploads/productos/<?php echo $recent_product['image'];?>" alt="" />
                 <?php endif;?>
                 <?php echo remove_junk(first_character($recent_product['name']));?>
-                  <span class="label label-warning pull-right">
+                  <span class="label label-primary pull-right">
                  lps <?php echo (int)$recent_product['precio_venta']; ?>
                   </span>
                 </h4>
