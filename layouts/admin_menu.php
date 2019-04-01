@@ -29,7 +29,7 @@
       <span>Proveedores</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="#">Administrar Proveedores</a> </li>
+      <li><a href="Proveedores.php">Administrar Proveedores</a> </li>
    </ul>
   </li>
 

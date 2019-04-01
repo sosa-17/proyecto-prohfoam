@@ -1,0 +1,1 @@
+CREATE PROCEDURE `ingresarProveedor` (IN `nombre` varchar(100), `telefono` varchar(250), `direccion` varchar(250) ) INSERT INTO proveedores (nombre, telefono, direccion) VALUES (`nombre`,`telefono`, `direccion`)
