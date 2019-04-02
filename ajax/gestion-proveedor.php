@@ -1,5 +1,6 @@
 <?php
    include ('../class/class-conexion.php');
+   include ('../class/class-proveedor.php');
    $conexion  = new Conexion();
    switch ($_GET["accion"]) {
    	case 'insertar_proveedor':
@@ -14,11 +15,13 @@
             echo "listo";
             }
    		break;
-   	default:
-   		# code...
+         case 'obtenerProveedores':
+            Proveedor::obtenerProveedor($conexion);         
+         break;
+      	default:
+      		# code...
    		break;
    }
-   /*CREATE PROCEDURE `ingresarProveedor` (IN `nombre` varchar(100), `telefono` varchar(250), `direccion` varchar(250) ) INSERT INTO proveedores (nombre, telefono, direccion) VALUES (`nombre`,`telefono`, `direccion`)*/
    
 ?>
 

@@ -31,7 +31,7 @@
 	<input type="text" name="txt-direccion" placeholder="Direccion"> <br>
 	</form>
     <button type="button" class="btn btn-raised btn-primary" id="btn-enviar">Agregar</button>
-      <table class="table table-bordered">
+      <!--<table class="table table-bordered">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
@@ -40,34 +40,31 @@
             <th class="text-center" style="width: 15%;">Direccion</th>
             <th class="text-center" style="width: 100px;">Editar/Eiminar</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr>
+        </thead>-->
+        <!--<tbody>
+          <tr>-->
+          	<div id="div-proveedores"></div>
+           <!--<td class="text-center"></td>
            <td class="text-center"></td>
-           <td></td>
            <td class="text-center"></td>
+           <td class="text-center"></td>
+
            <td class="text-center">
-           
-            <span class="label label-primary"></span>
-          
-            <span class="label label-danger"></span>
-          
-           </td>
-           <td class="text-center">
-             <div class="btn-group">
+            <div class="btn-group">
                 <a href="" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Editar">
                   <i class="glyphicon glyphicon-pencil"></i>
-               </a>
+                </a>
                 <a href="" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Eliminar">
                   <i class="glyphicon glyphicon-remove"></i>
                 </a>
-                </div>
-           </td>
-          </tr>
-       </tbody>
+            </div>
+           </td>-->
+          <!--	</tr>
+       </tbody>-->
      </table>
      </div>
     </div>
   </div>
 </div>
 <script type="text/javascript" src="js/proveedor.js"></script>
+<script type="text/javascript" src="js/lista_proveedores.js"></script>

@@ -8,8 +8,8 @@ $(document).ready(function(){
           data:datos,
           url:"ajax/gestion-proveedor.php?accion=insertar_proveedor",
           success:function(respuesta){
-            alert(datos);
-            alert(respuesta + "Datos Personales resgistrados");
+            //alert(datos);
+            alert(respuesta + "Datos esgistrados");
           },error:function(e){      
             alert("Hay un problema");
           }
