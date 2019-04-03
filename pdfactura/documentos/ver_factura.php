@@ -1,9 +1,5 @@
 <?php
-	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
-	---------------------------*/
+
 	session_start();
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: ../../login.php");
@@ -14,7 +10,7 @@
 	include("../../config/conexion.php");
 	//Archivo de funciones PHP
 	$id_factura= intval($_GET['id_factura']);
-	$sql_count=mysqli_query($con,"select * from facturas where id_factura='".$id_factura."'");
+	$sql_count=mysqli_query($con,"select * from pedidos where id_pedido='".$id_factura."'");
 	$count=mysqli_num_rows($sql_count);
 	if ($count==0)
 	{
@@ -22,14 +18,15 @@
 	echo "<script>window.close();</script>";
 	exit;
 	}
-	$sql_factura=mysqli_query($con,"select * from facturas where id_factura='".$id_factura."'");
+	$sql_factura=mysqli_query($con,"select * from pedidos where id_pedido='".$id_factura."'");
 	$rw_factura=mysqli_fetch_array($sql_factura);
-	$numero_factura=$rw_factura['numero_factura'];
-	$id_cliente=$rw_factura['id_cliente'];
+	$numero_factura=$rw_factura['numero'];
+	$id_cliente=$rw_factura['id_usuario'];
 	$id_vendedor=$rw_factura['id_vendedor'];
-	$fecha_factura=$rw_factura['fecha_factura'];
-	$condiciones=$rw_factura['condiciones'];
-	$simbolo_moneda=get_row('perfil','moneda', 'id_perfil', 1);
+	$fecha_factura=$rw_factura['fecha'];
+	$condicionespedido=$rw_factura['condiciones'];
+	$comentariopedido=$rw_factura['comentarios'];
+	$total_ventapedido=$rw_factura['total_venta'];
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
     // get the HTML
      ob_start();

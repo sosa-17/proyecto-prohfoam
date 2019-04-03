@@ -117,7 +117,7 @@
 						
 						$nombre_vendedor=$obtenerrow['name'];
 						$estado_pedido=$row['estado_pedido'];
-						if ($estado_pedido==1){$text_estado="Pagada";$label_class='label-primary';}
+						if ($estado_pedido==1){$text_estado="Aprobada";$label_class='label-primary';}
 						else{$text_estado="Pendiente";$label_class='label-danger';}
 						$total_venta=$row['total_venta'];	
 						//1111111111111}

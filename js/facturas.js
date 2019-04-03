@@ -44,3 +44,6 @@
 		function imprimir_factura(id_factura){
 			VentanaCentrada('./pdfactura/documentos/ver_factura.php?id_factura='+id_factura,'Factura','','1024','768','true');
 		}
+		function aprobar_pedido(id_factura){
+			
+		}

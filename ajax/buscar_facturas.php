@@ -129,7 +129,7 @@
 						<td class='text-right'><?php echo number_format($total_venta,2); ?></td>					
 					<td class="text-right">
 						<a href="#" class='btn btn-default' title='imprimir factura' onclick="imprimir_factura('<?php echo $id_pedido;?>');"><i class="glyphicon glyphicon-download"></i></a> 
-						<a href="editar_pedido.php ?id_factura=<?php echo $id_pedido;?>" class='btn btn-default' title='Editar pedido' ><i class="glyphicon glyphicon-edit"></i></a> 
+						<a href="#" class='btn btn-default' title='Aprobar factura' onclick="aprobar_pedido('<?php echo $id_pedido;?>');"><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_pedido; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						
