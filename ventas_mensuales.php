@@ -1,4 +1,5 @@
 <?php
+ini_set('date.timezone', 'America/Tegucigalpa');
   $page_title = 'Ventas mensuales';
   require_once('includes/cargar.php');
   // Checkin What level user has permission to view this page
@@ -39,9 +40,9 @@
              <tr>
                <td class="text-center"><?php echo count_id();?></td>
                <td><?php echo remove_junk($sale['name']); ?></td>
-               <td class="text-center"><?php echo (int)$sale['cant']; ?></td>
+               <td class="text-center"><?php echo (int)$sale['cantidad']; ?></td>
                <td class="text-center"><?php echo remove_junk($sale['total_saleing_precio']); ?></td>
-               <td class="text-center"><?php echo date("d/m/Y", strtotime ($sale['date'])); ?></td>
+               <td class="text-center"><?php echo date("d/m/Y", strtotime ($sale['fecha'])); ?></td>
              </tr>
              <?php endforeach;?>
            </tbody>

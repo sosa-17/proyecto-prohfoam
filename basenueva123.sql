@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-03-2019 a las 07:22:47
+-- Tiempo de generación: 30-03-2019 a las 07:32:11
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -62,6 +62,42 @@ CREATE TABLE `datospersonales` (
 INSERT INTO `datospersonales` (`id`, `email`, `direccion`, `usuarios_id`) VALUES
 (16, 'samer@gmail.com', 'tgu, villa olimpica', 23),
 (17, 'tito@gmail.com', 'tgu, Centro', 24);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_pedido`
+--
+
+CREATE TABLE `detalle_pedido` (
+  `id_detalle` int(11) NOT NULL,
+  `numero_pedido` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `costo` double NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalle_pedido`
+--
+
+INSERT INTO `detalle_pedido` (`id_detalle`, `numero_pedido`, `id_producto`, `cantidad`, `costo`) VALUES
+(1, 2, 12, 1, 20),
+(2, 2, 11, 1, 100),
+(3, 2, 10, 1, 200),
+(4, 3, 11, 1, 100),
+(5, 3, 12, 1, 20),
+(6, 3, 11, 1, 100),
+(7, 3, 10, 1, 200),
+(8, 4, 12, 1, 20),
+(9, 4, 10, 1, 200),
+(10, 4, 11, 1, 100),
+(11, 5, 11, 1, 100),
+(12, 5, 11, 1, 100),
+(13, 5, 11, 1, 100),
+(14, 6, 11, 1, 100),
+(15, 6, 11, 1, 100),
+(16, 6, 10, 1, 200);
 
 -- --------------------------------------------------------
 
@@ -185,6 +221,56 @@ INSERT INTO `media` (`id`, `file_name`, `file_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id_pedido` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `condiciones` varchar(255) NOT NULL,
+  `comentarios` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id_pedido`, `numero`, `fecha`, `id_usuario`, `condiciones`, `comentarios`) VALUES
+(1, 1, '2019-03-30 07:12:20', 0, 'Contado', 'descuento'),
+(2, 2, '2019-03-30 07:17:29', 23, 'Contado', 'descuento'),
+(3, 3, '2019-03-30 07:18:24', 23, 'Contado', 'descuento'),
+(4, 4, '2019-03-30 07:22:49', 23, 'Contado', ''),
+(5, 5, '2019-03-30 07:23:57', 23, 'EFECTIVO', 'descuento'),
+(6, 6, '2019-03-30 07:24:44', 23, 'Contado', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `perfil`
+--
+
+CREATE TABLE `perfil` (
+  `id` int(11) NOT NULL,
+  `nombre_comercial` varchar(255) NOT NULL,
+  `propietario` varchar(255) NOT NULL,
+  `telefono` varchar(30) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `iva` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `perfil`
+--
+
+INSERT INTO `perfil` (`id`, `nombre_comercial`, `propietario`, `telefono`, `direccion`, `email`, `iva`) VALUES
+(1, 'Sistema Web S.A. de C.V.', 'Obed Alvarado', '7058-7688', 'San Miguel, El Salvador', 'info@obedalvarado.pw', 13);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -207,6 +293,20 @@ INSERT INTO `productos` (`id`, `name`, `cantidad`, `precio_compra`, `precio_vent
 (10, 'Cama', '4', '147.00', '200.00', 1, 2, '2019-03-17 07:10:54'),
 (11, 'Silla', '47', '78.00', '100.00', 2, 4, '2019-03-17 07:11:26'),
 (12, 'Colchon', '4', '17.00', '20.00', 3, 1, '2019-03-17 07:12:10');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tmp`
+--
+
+CREATE TABLE `tmp` (
+  `id_tmp` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad_tmp` int(11) NOT NULL,
+  `precio_tmp` double(8,2) DEFAULT NULL,
+  `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -234,27 +334,6 @@ INSERT INTO `usuarios` (`id`, `name`, `nombre_usuario`, `password`, `nivel_usuar
 (23, 'Samer', 'Samer', 'd530ef8ba7401d025c6e5b5d791fb1ed03ad7de9', 2, 'no_image.jpg', 1, NULL),
 (24, 'Tito', 'tito', '1a96f9437697ef43237868412d77b15991964f6e', 3, 'no_image.jpg', 1, NULL);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas`
---
-
-CREATE TABLE `ventas` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `producto_id` int(11) UNSIGNED NOT NULL,
-  `cant` int(11) NOT NULL,
-  `precio` decimal(25,2) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ventas`
---
-
-INSERT INTO `ventas` (`id`, `producto_id`, `cant`, `precio`, `date`) VALUES
-(2, 10, 1, '200.00', '2019-03-17');
-
 --
 -- Índices para tablas volcadas
 --
@@ -273,6 +352,13 @@ ALTER TABLE `datospersonales`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `usuarios_id` (`usuarios_id`);
+
+--
+-- Indices de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD PRIMARY KEY (`id_detalle`),
+  ADD KEY `numero_cotizacion` (`numero_pedido`,`id_producto`);
 
 --
 -- Indices de la tabla `direccion`
@@ -301,6 +387,7 @@ ALTER TABLE `factura`
 ALTER TABLE `factura_detalles`
   ADD PRIMARY KEY (`factura_detalles_id`),
   ADD KEY `fk_factura_detalles_productos1_idx` (`productos_id`),
+  ADD KEY `fk_factura_detalles_detalle_idx` (`id_detalle`),
   ADD KEY `fk_factura_detalles_factura1_idx` (`factura_id`);
 
 --
@@ -316,6 +403,19 @@ ALTER TABLE `grupo_usuario`
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
+
+--
+-- Indices de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD UNIQUE KEY `numero_cotizacion` (`numero`);
+
+--
+-- Indices de la tabla `perfil`
+--
+ALTER TABLE `perfil`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `productos`
@@ -335,13 +435,6 @@ ALTER TABLE `usuarios`
   ADD KEY `nivel_usuario` (`nivel_usuario`);
 
 --
--- Indices de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `producto_id` (`producto_id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -356,6 +449,12 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `datospersonales`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
@@ -382,82 +481,16 @@ ALTER TABLE `factura_detalles`
   MODIFY `factura_detalles_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `grupo_usuario`
+-- AUTO_INCREMENT de la tabla `pedidos`
 --
-ALTER TABLE `grupo_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `pedidos`
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `media`
+-- AUTO_INCREMENT de la tabla `perfil`
 --
-ALTER TABLE `media`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `datospersonales`
---
-ALTER TABLE `datospersonales`
-  ADD CONSTRAINT `FK_datosPersonales` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `empresa`
---
-ALTER TABLE `empresa`
-  ADD CONSTRAINT `fk_empresa_direccion1` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD CONSTRAINT `fk_factura_empresa1` FOREIGN KEY (`empresa_empresa_id`) REFERENCES `empresa` (`empresa_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `factura_detalles`
---
-ALTER TABLE `factura_detalles`
-  ADD CONSTRAINT `fk_factura_detalles_factura1` FOREIGN KEY (`factura_id`) REFERENCES `factura` (`factura_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_factura_detalles_productos1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD CONSTRAINT `FK_productos` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `FK_user` FOREIGN KEY (`nivel_usuario`) REFERENCES `grupo_usuario` (`nivel_grupo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD CONSTRAINT `SK` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `perfil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

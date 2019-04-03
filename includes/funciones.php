@@ -1,4 +1,5 @@
 <?php
+ini_set('date.timezone', 'America/Tegucigalpa');
  $errors = array();
 
  /*--------------------------------------------------------------*/
@@ -115,7 +116,5 @@ function randString($length = 5)
   for($x=0; $x<$length; $x++)
    $str .= $cha[mt_rand(0,strlen($cha))];
   return $str;
-}
-
-
+} 
 ?>

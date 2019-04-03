@@ -8,11 +8,11 @@
 <?php
   if(isset($_POST['add_user'])){
 
-   $req_fields = array('full-name','nombre_usuario','password','level' );
+   $req_fields = array('name','nombre_usuario','password','level' );
    validate_fields($req_fields);
 
    if(empty($errors)){
-           $name   = remove_junk($db->escape($_POST['full-name']));
+           $name   = remove_junk($db->escape($_POST['name']));
        $nombre_usuario   = remove_junk($db->escape($_POST['nombre_usuario']));
        $password   = remove_junk($db->escape($_POST['password']));
        $nivel_usuario = (int)$db->escape($_POST['level']);
@@ -60,7 +60,7 @@
           <form method="post" action="agregar_usuario.php">
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="full-name" placeholder="Nombre completo">
+                <input type="text" class="form-control" name="name" placeholder="Nombre ">
             </div>
             <div class="form-group">
                 <label for="nombre_usuario">Usuario</label>

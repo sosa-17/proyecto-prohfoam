@@ -17,11 +17,11 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-shopping-cart"></i>
-      <span>Facturacion</span>
+      <span>Pedidos</span>
     </a>
     <ul class="nav submenu">
-       <li><a href="factura.php">Nueva Factura</a> </li>
-      
+       <li><a href="pedido.php">Nuevo Pedido</a> </li>
+      <li><a href="administrar_pedido.php">Administrar Pedido</a> </li>
    </ul>
   </li>
 

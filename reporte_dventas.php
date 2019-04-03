@@ -96,7 +96,7 @@ $results = '';
         <tbody>
           <?php foreach($results as $result): ?>
            <tr>
-              <td class=""><?php echo remove_junk($result['date']);?></td>
+              <td class=""><?php echo remove_junk($result['fecha']);?></td>
               <td class="desc">
                 <h6><?php echo remove_junk(ucfirst($result['name']));?></h6>
               </td>
@@ -111,14 +111,14 @@ $results = '';
          <tr class="text-right">
            <td colspan="4"></td>
            <td colspan="1"> Total </td>
-           <td> $
+           <td> L. 
            <?php echo number_format(@total_precio($results)[0], 2);?>
           </td>
          </tr>
          <tr class="text-right">
            <td colspan="4"></td>
            <td colspan="1">Utilidad</td>
-           <td> $<?php echo number_format(@total_precio($results)[1], 2);?></td>
+           <td> L. <?php echo number_format(@total_precio($results)[1], 2);?></td>
          </tr>
         </tfoot>
       </table>
