@@ -3,6 +3,8 @@
 	
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
+	session_start();
+	$vendedor=$_SESSION['vendedor'];
 	
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
@@ -61,7 +63,7 @@
 
 		  $sTable = "pedidos, usuarios";
 		 $sWhere = "";
-		 $sWhere.=" WHERE pedidos.id_vendedor=usuarios.id";
+		 $sWhere.=" WHERE pedidos.id_vendedor=usuarios.id AND usuarios.name='$vendedor'";
 		if ( $_GET['q'] != "" )
 		{
 		$sWhere.= " and  (usuarios.name like '%$q%' or pedidos.numero like '%$q%')";
@@ -106,7 +108,7 @@
 				while ($row=mysqli_fetch_array($query)){
 					if ($obtenerrow=mysqli_fetch_array($query2)) {
 						
-						if($row['name']=='juan carlos'){
+						//if($row['name']=='juan carlos'){
 						$nombre_cliente=$row['name'];
 							//if ($row['nivel_usuario']=='2') {
 							$id_pedido=$row['id_pedido'];
@@ -135,7 +137,7 @@
 						
 					</tr>
 					<?php
-				}
+				
 				}
 				}
 				?>

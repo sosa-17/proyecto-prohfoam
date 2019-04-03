@@ -1,5 +1,6 @@
-<?php require_once('includes/cargar.php');?>
+<?php require_once('includes/cargar.php');
   page_require_level(2);
+?>
 
 
 <?php include_once('layouts/header.php'); ?>
