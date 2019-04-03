@@ -112,7 +112,7 @@
 
 		public static function CategoriaSala($conexion){
 			$resultado = $conexion->ejecutarConsulta(
-				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name
+				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name as cat
 				FROM productos a 
 				INNER JOIN media b 
 				ON (a.media_id = b.id)
@@ -131,7 +131,7 @@
 						<a href="#">'.$fila["name"].' </a>
 					   </h4>
 					   <h5>Precio:'.$fila["precio_venta"].'</h5>
-					   <p class="card-text">'.$fila['name'].'</p>
+					   <p class="card-text">'.$fila['cat'].'</p>
 					 </div>
 					 <div class="card-footer">
 					   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -153,7 +153,7 @@
 
 		public static function CategoriaDormitorio($conexion){
 			$resultado = $conexion->ejecutarConsulta(
-				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name
+				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name as cat
 				FROM productos a 
 				INNER JOIN media b 
 				ON (a.media_id = b.id)
@@ -172,7 +172,7 @@
 						<a href="#">'.$fila["name"].' </a>
 					   </h4>
 					   <h5>Precio:'.$fila["precio_venta"].'</h5>
-					   <p class="card-text">'.$fila['name'].'</p>
+					   <p class="card-text">'.$fila['cat'].'</p>
 					 </div>
 					 <div class="card-footer">
 					   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -194,7 +194,7 @@
 
 		public static function CategoriaOficina($conexion){
 			$resultado = $conexion->ejecutarConsulta(
-				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name
+				'SELECT a.id,a.name,a.precio_venta,b.file_name,a.cantidad,a.categoria_id,c.name as cat
 				FROM productos a 
 				INNER JOIN media b 
 				ON (a.media_id = b.id)
@@ -213,7 +213,7 @@
 						<a href="#">'.$fila["name"].' </a>
 					   </h4>
 					   <h5>Precio:'.$fila["precio_venta"].'</h5>
-					   <p class="card-text">'.$fila['name'].'</p>
+					   <p class="card-text">'.$fila['cat'].'</p>
 					 </div>
 					 <div class="card-footer">
 					   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

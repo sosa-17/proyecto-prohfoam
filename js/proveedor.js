@@ -9,11 +9,10 @@ $(document).ready(function(){
           url:"ajax/gestion-proveedor.php?accion=insertar_proveedor",
           success:function(respuesta){
             //alert(datos);
-            alert(respuesta + "Datos esgistrados");
+            alert("Datos esgistrados");
           },error:function(e){      
             alert("Hay un problema");
           }
         });
   });
 });
-

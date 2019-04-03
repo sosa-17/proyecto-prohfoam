@@ -7,11 +7,11 @@
 <?php
  $c_categorie     = count_by_id('categorias');
  $c_product       = count_by_id('productos');
- $c_sale          = count_by_id('ventas');
+ $c_sale          = count_ventas('pedidos');
  $c_user          = count_by_id('usuarios');
- $productos_sold   = find_higest_saleing_product('10');
+ $productos_sold   = find_higest_saleing_product('3');
  $recent_productos = find_recent_product_added('5');
- $recent_ventas    = find_recent_sale_added('5')
+ $recent_ventas    = find_recent_sale_added('5');
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -125,8 +125,8 @@
              <?php echo remove_junk(first_character($recent_sale['name'])); ?>
            </a>
            </td>
-           <td><?php echo remove_junk(ucfirst($recent_sale['date'])); ?></td>
-           <td>lps <?php echo remove_junk(first_character($recent_sale['precio'])); ?></td>
+           <td><?php echo remove_junk(ucfirst($recent_sale['fecha'])); ?></td>
+           <td>lps <?php echo remove_junk(first_character($recent_sale['costo'])); ?></td>
         </tr>
 
        <?php endforeach; ?>
@@ -155,7 +155,7 @@
                   <img class="img-avatar img-circle" src="uploads/productos/<?php echo $recent_product['image'];?>" alt="" />
                 <?php endif;?>
                 <?php echo remove_junk(first_character($recent_product['name']));?>
-                  <span class="label label-warning pull-right">
+                  <span class="label label-primary pull-right">
                  lps <?php echo (int)$recent_product['precio_venta']; ?>
                   </span>
                 </h4>

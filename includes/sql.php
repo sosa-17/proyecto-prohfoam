@@ -42,7 +42,15 @@ function maxid() {
    }
 }
 
-
+function vendedor($nombre_vendedor){
+  global $db;
+   $sql = $db->query("SELECT * FROM usuarios u INNER JOIN pedidos p ON u.id=p.id_vendedor where u.nivel_usuario=2 AND u.name=$nombre_vendedor ");
+  
+   if($result = $db->fetch_assoc($sql))
+   {
+     return $result;
+   }
+}
 /*--------------------------------------------------------------*/
 /* Function for Perform queries
 /*--------------------------------------------------------------*/
@@ -92,6 +100,16 @@ function count_by_id($table){
   if(tableExists($table))
   {
     $sql    = "SELECT COUNT(id) AS total FROM ".$db->escape($table);
+    $result = $db->query($sql);
+     return($db->fetch_assoc($result));
+  }
+}
+
+function count_ventas($table){
+  global $db;
+  if(tableExists($table))
+  {
+    $sql    = "SELECT COUNT(id_pedido) AS total FROM ".$db->escape($table);
     $result = $db->query($sql);
      return($db->fetch_assoc($result));
   }
@@ -320,11 +338,11 @@ function tableExists($table){
  /*--------------------------------------------------------------*/
  function find_higest_saleing_product($limit){
    global $db;
-   $sql  = "SELECT p.name, COUNT(s.producto_id) AS totalSold, SUM(s.cant) AS totalcant";
-   $sql .= " FROM ventas s";
-   $sql .= " LEFT JOIN productos p ON p.id = s.producto_id ";
-   $sql .= " GROUP BY s.producto_id";
-   $sql .= " ORDER BY SUM(s.cant) DESC LIMIT ".$db->escape((int)$limit);
+   $sql  = "SELECT p.name, COUNT(s.id_producto) AS totalSold, SUM(s.cantidad) AS totalcant";
+   $sql .= " FROM detalle_pedido s";
+   $sql .= " LEFT JOIN productos p ON p.id = s.id_producto ";
+   $sql .= " GROUP BY s.id_producto";
+   $sql .= " ORDER BY SUM(s.cantidad) DESC LIMIT ".$db->escape((int)$limit);
    return $db->query($sql);
  }
  /*--------------------------------------------------------------*/
@@ -332,21 +350,33 @@ function tableExists($table){
  /*--------------------------------------------------------------*/
  function find_all_sale(){
    global $db;
-   $sql  = "SELECT s.id,s.cant,s.precio,s.date,p.name";
-   $sql .= " FROM ventas s";
-   $sql .= " LEFT JOIN productos p ON s.producto_id = p.id";
-   $sql .= " ORDER BY s.date DESC";
+   $sql  = "SELECT s.id,s.cantidad,s.costo,f.fecha,p.name";
+   $sql .= " FROM pedidos f";
+   $sql .= " LEFT JOIN detalle_pedido s ON s.numero_pedido = f.numero";
+   $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+   $sql .= " ORDER BY f.fecha DESC";
    return find_by_sql($sql);
  }
+
+ function find_all_factura(){
+  global $db;
+  $sql  = "SELECT s.id_detalle,s.cantidad,s.costo,f.fecha,p.name,(s.cantidad*s.costo)as total";
+  $sql .= " FROM pedidos f";
+  $sql .= " LEFT JOIN detalle_pedido s ON s.numero_pedido = f.numero";
+  $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+  $sql .= " GROUP BY s.id,s.cantidad,s.costo,f.fecha,p.name,total";
+  return find_by_sql($sql);
+}
  /*--------------------------------------------------------------*/
  /* Function for Display Recent sale
  /*--------------------------------------------------------------*/
 function find_recent_sale_added($limit){
   global $db;
-  $sql  = "SELECT s.id,s.cant,s.precio,s.date,p.name";
-  $sql .= " FROM ventas s";
-  $sql .= " LEFT JOIN productos p ON s.producto_id = p.id";
-  $sql .= " ORDER BY s.date DESC LIMIT ".$db->escape((int)$limit);
+  $sql  = "SELECT s.id_detalle,s.cantidad,s.costo,f.fecha,p.name";
+  $sql .= " FROM pedidos f";
+  $sql .= " LEFT JOIN detalle_pedido s ON s.numero_pedido = f.numero";
+  $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+  $sql .= " ORDER BY f.fecha DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
 /*--------------------------------------------------------------*/
@@ -356,30 +386,39 @@ function find_sale_by_dates($start_date,$end_date){
   global $db;
   $start_date  = date("Y-m-d", strtotime($start_date));
   $end_date    = date("Y-m-d", strtotime($end_date));
-  $sql  = "SELECT s.date, p.name,p.precio_venta,p.precio_compra,";
-  $sql .= "COUNT(s.producto_id) AS total_records,";
-  $sql .= "SUM(s.cant) AS total_ventas,";
-  $sql .= "SUM(p.precio_venta * s.cant) AS total_saleing_precio,";
-  $sql .= "SUM(p.precio_compra * s.cant) AS total_buying_precio ";
-  $sql .= "FROM ventas s ";
-  $sql .= "LEFT JOIN productos p ON s.producto_id = p.id";
-  $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
-  $sql .= " GROUP BY DATE(s.date),p.name";
-  $sql .= " ORDER BY DATE(s.date) DESC";
+  $sql  = "SELECT f.fecha, p.name,p.precio_venta,p.precio_compra,";
+  $sql .= "COUNT(s.id_producto) AS total_records,";
+  $sql .= "SUM(s.cantidad) AS total_ventas,";
+  $sql .= "SUM(p.precio_venta * s.cantidad) AS total_saleing_precio,";
+  $sql .= "SUM(p.precio_compra * s.cantidad) AS total_buying_precio ";
+  $sql .= "FROM detalle_pedido s ";
+  $sql .= " LEFT JOIN pedidos f ON s.numero_pedido = f.numero";
+  $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+  $sql .= " WHERE f.fecha BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= " GROUP BY DATE(f.fecha),p.name";
+  $sql .= " ORDER BY DATE(f.fecha) DESC";
   return $db->query($sql);
+}
+function get_row($table,$row, $id, $equal){
+	global $con;
+	$query=mysqli_query($con,"select $row from $table where $id='$equal'");
+	$rw=mysqli_fetch_array($query);
+	$value=$rw[$row];
+	return $value;
 }
 /*--------------------------------------------------------------*/
 /* Function for Generate Daily ventas report
 /*--------------------------------------------------------------*/
 function  dailyventas($year,$month){
   global $db;
-  $sql  = "SELECT s.cant,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
-  $sql .= "SUM(p.precio_venta * s.cant) AS total_saleing_precio";
-  $sql .= " FROM ventas s";
-  $sql .= " LEFT JOIN productos p ON s.producto_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y-%m' ) = '{$year}-{$month}'";
-  $sql .= " GROUP BY DATE_FORMAT( s.date,  '%e' ),s.producto_id";
+  $sql  = "SELECT s.cantidad,";
+  $sql .= " DATE_FORMAT(f.fecha, '%Y-%m-%e') AS date,p.name,";
+  $sql .= "SUM(p.precio_venta * s.cantidad) AS total_saleing_precio";
+  $sql .= " FROM pedidos f";
+  $sql .= " LEFT JOIN detalle_pedido s ON s.numero_pedido = f.numero";
+  $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+  $sql .= " WHERE DATE_FORMAT(f.fecha, '%Y-%m' ) = '{$year}-{$month}'";
+  $sql .= " GROUP BY DATE_FORMAT( f.fecha,  '%e' ),s.id_producto";
   return find_by_sql($sql);
 }
 /*--------------------------------------------------------------*/
@@ -387,15 +426,17 @@ function  dailyventas($year,$month){
 /*--------------------------------------------------------------*/
 function  monthlyventas($year){
   global $db;
-  $sql  = "SELECT s.cant,";
-  $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
-  $sql .= "SUM(p.precio_venta * s.cant) AS total_saleing_precio";
-  $sql .= " FROM ventas s";
-  $sql .= " LEFT JOIN productos p ON s.producto_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y' ) = '{$year}'";
-  $sql .= " GROUP BY DATE_FORMAT( s.date,  '%c' ),s.producto_id";
-  $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
+  $sql  = "SELECT s.cantidad,";
+  $sql .= " DATE_FORMAT(f.fecha, '%Y-%m-%e') AS fecha,p.name,";
+  $sql .= "SUM(p.precio_venta * s.cantidad) AS total_saleing_precio";
+  $sql .= " FROM pedidos f";
+  $sql .= " LEFT JOIN detalle_pedido s ON s.numero_pedido = f.numero";
+  $sql .= " LEFT JOIN productos p ON s.id_producto = p.id";
+  $sql .= " WHERE DATE_FORMAT(f.fecha, '%Y' ) = '{$year}'";
+  $sql .= " GROUP BY DATE_FORMAT( f.fecha,  '%c' ),s.id_producto";
+  $sql .= " ORDER BY date_format(f.fecha, '%c' ) ASC";
   return find_by_sql($sql);
 }
 
 ?>
+

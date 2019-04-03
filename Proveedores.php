@@ -8,6 +8,7 @@
       include("modal/registro_usuarios.php");
 ?>
 <script src="js/jquery.min.js"></script>
+
 <div class="row">
    <div class="col-md-12">
    </div>
@@ -26,9 +27,9 @@
     </div>
      <div class="panel-body">
      	<form id="frmAgregar">
-	<input type="text" name="txt-nombre" id="txt-nombre" placeholder="Nombre">
-	<input type="text" name="txt-telefono" id="txt-edad" placeholder="Telefono">
-	<input type="text" name="txt-direccion" placeholder="Direccion"> <br>
+	<input type="text" name="txt-nombre" id="txt-nombre" required name="Nombre" value="" placeholder="Nombre" >
+	<input type="text" name="txt-telefono" id="txt-telefono" required name="Telefono" value="" placeholder="Telefono" >
+	<input type="text" name="txt-direccion" required name="Direccion" value="" placeholder="Direccion"> <br>
 	</form>
     <button type="button" class="btn btn-raised btn-primary" id="btn-enviar">Agregar</button>
       <!--<table class="table table-bordered">
@@ -60,11 +61,13 @@
             </div>
            </td>-->
           <!--	</tr>
-       </tbody>-->
-     </table>
+       </tbody>
+     </table>-->
      </div>
     </div>
   </div>
 </div>
 <script type="text/javascript" src="js/proveedor.js"></script>
 <script type="text/javascript" src="js/lista_proveedores.js"></script>
+
+
