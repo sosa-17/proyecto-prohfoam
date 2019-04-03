@@ -112,7 +112,7 @@
 						
 						$nombre_vendedor=$obtenerrow['name'];
 						$estado_pedido=$row['estado_pedido'];
-						if ($estado_pedido==1){$text_estado="Pagada";$label_class='label-primary';}
+						if ($estado_pedido==1){$text_estado="Aprobada";$label_class='label-primary';}
 						else{$text_estado="Pendiente";$label_class='label-danger';}
 						$total_venta=$row['total_venta'];	
 						//1111111111111}
@@ -129,7 +129,7 @@
 						<td class='text-right'><?php echo number_format($total_venta,2); ?></td>					
 					<td class="text-right">
 						<a href="#" class='btn btn-default' title='imprimir factura' onclick="imprimir_factura('<?php echo $id_pedido;?>');"><i class="glyphicon glyphicon-download"></i></a> 
-						<a href="#" class='btn btn-default' title='Aprobar factura' onclick="aprobar_pedido('<?php echo $id_pedido;?>');"><i class="glyphicon glyphicon-edit"></i></a> 
+						<a href="ajax/aprobar.php?id_factura=<?php echo $id_pedido;?>" class='btn btn-default' title='Aprobar factura' ><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_pedido; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						

@@ -225,6 +225,14 @@ function tableExists($table){
     return ($result && $db->affected_rows() === 1 ? true : false);
 	}
 
+ function actualizarestado($idpedido)
+  {
+    global $db;
+    
+    $sql = "UPDATE pedidos SET estado_pedido=1 WHERE id_pedido ='{$idpedido}'";
+    $result = $db->query($sql);
+    return ($result && $db->affected_rows() === 1 ? true : false);
+  }
   /*--------------------------------------------------------------*/
   /* Find all Group name
   /*--------------------------------------------------------------*/
