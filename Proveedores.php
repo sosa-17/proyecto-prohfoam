@@ -26,12 +26,22 @@
 			 </button>-->
     </div>
      <div class="panel-body">
+      <div class="form-group">
      	<form id="frmAgregar">
-	<input type="text" name="txt-nombre" id="txt-nombre" required name="Nombre" value="" placeholder="Nombre" >
-	<input type="text" name="txt-telefono" id="txt-telefono" required name="Telefono" value="" placeholder="Telefono" >
-	<input type="text" name="txt-direccion" required name="Direccion" value="" placeholder="Direccion"> <br>
+          <div class="col-md-4"> 
+	<input type="text" class="form-control" name="txt-nombre" id="txt-nombre" required name="Nombre" value="" placeholder="Nombre Proveedor" >
+   </div>
+     <div class="col-md-4"> 
+	<input type="text" class="form-control" name="txt-telefono" id="txt-telefono" required name="Telefono" value="" placeholder="Telefono" >
+  </div>
+    <div class="col-md-4"> 
+	<input type="text" class="form-control" name="txt-direccion" required name="Direccion" value="" placeholder="Direccion"> <br>
+  </div>
 	</form>
+  
     <button type="button" class="btn btn-raised btn-primary" id="btn-enviar">Agregar</button>
+  </br>
+</br>
       <!--<table class="table table-bordered">
         <thead>
           <tr>

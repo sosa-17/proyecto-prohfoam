@@ -28,11 +28,17 @@ page_require_level(2);
 
 
     <div class="container">
+    	<div class="panel panel-default">
+		<div class="panel-heading">
+		    <strong>
+			<h4><i class='glyphicon glyphicon-edit'></i> Nuevo Pedido.. </h4>
+		</strong>
+		</div>
 		  <div class="row-fluid">
 		  
-			<div class="col-md-12">
-			<h2><span class="glyphicon glyphicon-edit"></span> Nuevo Pedido</h2>
-			<hr>
+			
+			<div class="panel-body">
+
 			<form class="form-horizontal" role="form" id="datos_pedido">
 				<div class="row">
 				  
@@ -61,10 +67,10 @@ page_require_level(2);
 				<hr>
 				<div class="col-md-12">
 					<div class="pull-right">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#nuevoCliente">
 						 <span class="glyphicon glyphicon-plus"></span> Agregar cliente
 						</button>
-						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 						 <span class="glyphicon glyphicon-plus"></span> Agregar productos
 						</button>
 						<button type="submit" class="btn btn-default">
@@ -74,7 +80,12 @@ page_require_level(2);
 				</div>
 			</form>
 			<br><br>
-		<div id="resultados" class='col-md-12'></div><!-- Carga los datos ajax -->
+				<div id="resultados" class='col-md-12'></div><!-- Carga los datos ajax -->
+			</div>
+			</div>
+
+			<br><br>
+	
 	
 			<!-- Modal -->
 			<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

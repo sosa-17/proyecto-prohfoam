@@ -69,10 +69,9 @@ include_once('layouts/header.php');
         <span class="glyphicon glyphicon-th"></span>
         <span>Roles de Usuario..</span>
      </strong>
-       <button type="button" class="btn btn-info pull-right btn-sm" data-toggle="modal" data-target="#agregarRol">
+       
+  <a href="#" class="btn btn-info pull-right">Agregar usuario</a>
       
-						 <span class="glyphicon glyphicon-plus"></span>AGREGAR ROL
-			 </button>
     </div>
      <div class="panel-body">
       <table class="table table-bordered">

@@ -9,7 +9,8 @@ $(document).ready(function(){
           url:"ajax/gestion-proveedor.php?accion=insertar_proveedor",
           success:function(respuesta){
             //alert(datos);
-            alert("Datos esgistrados");
+            //alert("Datos registrados");
+            location.href="proveedores.php";
           },error:function(e){      
             alert("Hay un problema");
           }

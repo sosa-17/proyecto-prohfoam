@@ -78,13 +78,9 @@ $results = '';
 <body>
   <?php if($results): ?>
     <div class="page-break">
-    <div class="sale-head pull-left">
-      <img class="img-responsive" src="img/logofactura.png" width=180px heigth=100px>
-      <h1>Reporte de Ventas</h1>
-      </div>
        <div class="sale-head pull-right">
-           <h1>Fecha:</h1>
-           <strong><?php if(isset($start_date)){ echo $start_date;}?> --a-- <?php if(isset($end_date)){echo $end_date;}?> </strong>
+           <h1>Reporte de ventas</h1>
+           <strong><?php if(isset($start_date)){ echo $start_date;}?> a <?php if(isset($end_date)){echo $end_date;}?> </strong>
        </div>
       <table class="table table-border">
         <thead>
@@ -115,14 +111,14 @@ $results = '';
          <tr class="text-right">
            <td colspan="4"></td>
            <td colspan="1"> Total </td>
-           <td> $
+           <td> L. 
            <?php echo number_format(@total_precio($results)[0], 2);?>
           </td>
          </tr>
          <tr class="text-right">
            <td colspan="4"></td>
            <td colspan="1">Utilidad</td>
-           <td> $<?php echo number_format(@total_precio($results)[1], 2);?></td>
+           <td> L. <?php echo number_format(@total_precio($results)[1], 2);?></td>
          </tr>
         </tfoot>
       </table>

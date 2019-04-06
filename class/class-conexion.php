@@ -1,15 +1,11 @@
 <?php //JELSYN 3-04-19 10pm
 	class Conexion{
 		private $host = "localhost";
-<<<<<<< HEAD
-		private $usuario = "root";
-		private $password = "";
-		private $baseDatos = "prohfoam";
-=======
+
 		private $usuario = "josue";
 		private $password = "legolas13";
 		private $baseDatos = "basenueva123";
->>>>>>> e24ae8ef0ce7aea4cc7e0319d1a9c333f72c40cb
+
 		private $puerto = 3306;
 		private $link;
 
