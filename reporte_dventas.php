@@ -77,6 +77,7 @@ $results = '';
 </head>
 <body>
   <?php if($results): ?>
+    <div class="col-sm-12">
     <div class="page-break">
     <div class="sale-head pull-left">
       <img class="img-responsive" src="img/logofactura.png" width=180px heigth=100px>
@@ -133,6 +134,7 @@ $results = '';
         redirect('reporte_ventas.php', false);
      endif;
   ?>
+  </div>
 </body>
 </html>
 <?php if(isset($db)) { $db->db_disconnect(); } ?>
