@@ -1,8 +1,4 @@
-<?php
-    require_once('includes/sql.php');
-    $sql="SELECT name,id FROM Categorias";
-    $resultado=find_by_sql($sql);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,17 +46,9 @@
       <div class="col-lg-3">
         <h1 class="my-4">Catalogo</h1>
         <div class="list-group">
-          <?php foreach($resultado as $resu): ?>
-            <?php if($resu['id'] === '1'): ?>
-              <a class="list-group-item" href="mueblesala.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-            <?php if($resu['id'] === '2'): ?>
-              <a class="list-group-item" href="muebleoficina.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-            <?php if($resu['id'] === '3'): ?>
-              <a class="list-group-item" href="muebledormitorio.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-          <?php endforeach;?>
+          <a class="list-group-item" href="mueblesala.php">Mueble Dormitorio</a>
+          <a class="list-group-item" href="muebleoficina.php">Mueble Sala</a>
+          <a class="list-group-item" href="muebledormitorio.php">Mueble Ofocina</a>
         </div>
       </div>
    <div class="col-lg-9">

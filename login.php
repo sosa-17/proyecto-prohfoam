@@ -29,7 +29,7 @@
     <div class="container-login100">
       <div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 
-      <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+      <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50 col-sm-12 col-md-12 col-lg-3 col-xl-3">
         <form class="login100-form validate-form" action="auth.php" method="post">
           <span class="login100-form-title p-b-59">
             Iniciar Sesion
@@ -49,7 +49,7 @@
             <span class="focus-input100"></span>
           </div>
 
-          <div class="container-login100-form-btn">
+          <div class="container-login100-form-btn center">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
               <button class="login100-form-btn">
@@ -57,10 +57,6 @@
               </button>
             </div>
 
-            <a href="RegistrarEmpleado.html" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-              Registrarse
-              <i class="fa fa-long-arrow-right m-l-5"></i>
-            </a>
           </div>
         </form>
       </div>

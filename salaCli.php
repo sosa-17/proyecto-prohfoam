@@ -1,8 +1,9 @@
 <?php
-    require_once('includes/sql.php');
-    $sql="SELECT name,id FROM Categorias";
-    $resultado=find_by_sql($sql);
+  $page_title = 'Home Page';
+  require_once('includes/cargar.php');
+  if (!$session->isUserLoggedIn(true)) { redirect('login.php', false);}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,17 +22,9 @@
       <div class="col-lg-3">
         <h1 class="my-4">Catalogo</h1>
         <div class="list-group">
-          <?php foreach($resultado as $resu): ?>
-            <?php if($resu['id'] === '1'): ?>
-              <a class="list-group-item" href="salaCli.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-            <?php if($resu['id'] === '2'): ?>
-              <a class="list-group-item" href="dormitorioCli.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-            <?php if($resu['id'] === '3'): ?>
-              <a class="list-group-item" href="oficinaCli.php"><?php echo $resu['name']; ?></a>
-            <?php endif;?>
-          <?php endforeach;?>
+          <a class="list-group-item" href="salaCli.php">Mueble Dormitorio</a>
+          <a class="list-group-item" href="oficinaCli.php">Mueble Sala</a>
+          <a class="list-group-item" href="dormitorioCli.php">Mueble Ofocina</a>
         </div>
       </div>
       
