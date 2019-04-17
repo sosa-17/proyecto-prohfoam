@@ -48,7 +48,16 @@
 		}
 
 
-		
+		public static function insertarProveedor($conexion){
+			if(isset($_POST['txt_nombre']) && ($_POST['txt_telefono']) && ($_POST['txt_direccion'])){
+			    $sql=" INSERT INTO proveedores (nombre,telefono,direccion) VALUES('$_POST[txt_nombre]','$_POST[txt_telefono]','$_POST[txt_direccion]')";
+
+			    $resultado=$conexion->ejecutarConsulta($sql);
+			    echo $resultado;
+            }
+		}
+
+
 		public static function obtenerProveedor($conexion){
 			$resultado = $conexion->ejecutarConsulta(
 				'SELECT proveedores_id, nombre, telefono, direccion

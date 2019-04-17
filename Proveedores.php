@@ -29,13 +29,13 @@
       <div class="form-group">
      	<form id="frmAgregar">
           <div class="col-md-4"> 
-	<input type="text" class="form-control" name="txt-nombre" id="txt-nombre" required name="Nombre" value="" placeholder="Nombre Proveedor" >
+	<input type="text" class="form-control" name="txt_nombre" id="txt-nombre"name="Nombre" value="" placeholder="Nombre Proveedor" required >
    </div>
      <div class="col-md-4"> 
-	<input type="text" class="form-control" name="txt-telefono" id="txt-telefono" required name="Telefono" value="" placeholder="Telefono" >
+	<input type="text" class="form-control" name="txt_telefono" id="txt-telefono" name="Telefono" value="" placeholder="Telefono"  required>
   </div>
     <div class="col-md-4"> 
-	<input type="text" class="form-control" name="txt-direccion" required name="Direccion" value="" placeholder="Direccion"> <br>
+	<input type="text" class="form-control" name="txt_direccion" name="Direccion" value="" placeholder="Direccion" required> <br>
   </div>
 	</form>
   

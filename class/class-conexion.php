@@ -2,8 +2,8 @@
 	class Conexion{
 		private $host = "localhost";
 
-		private $usuario = "josue";
-		private $password = "legolas13";
+		private $usuario = "root";
+		private $password = "";
 		private $baseDatos = "basenueva123";
 
 		private $puerto = 3306;

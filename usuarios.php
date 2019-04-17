@@ -38,8 +38,8 @@
 
         $servername = "localhost";
         $database = "basenueva123";
-        $user = "josue";
-        $password = "legolas13";
+        $user = "root";
+        $password = "";
         // Create connection
         $conn = mysqli_connect($servername, $user, $password, $database);
 
