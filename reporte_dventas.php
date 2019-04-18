@@ -13,6 +13,8 @@ $results = '';
     if(empty($errors)):
       $start_date   = remove_junk($db->escape($_POST['start-date']));
       $end_date     = remove_junk($db->escape($_POST['end-date']));
+      $_SESSION['i']=$_POST['start-date'];
+      $_SESSION['f']=$_POST['end-date'];
       $results      = find_sale_by_dates($start_date,$end_date);
     else:
       $session->msg("d", $errors);
@@ -76,6 +78,7 @@ $results = '';
    </style>
 </head>
 <body>
+  
   <?php if($results): ?>
     <div class="col-sm-12">
     <div class="page-break">
@@ -135,6 +138,11 @@ $results = '';
      endif;
   ?>
   </div>
+          <form action="imprimirReporte.php" method="post">  
+            
+                 <center><button type="submit" name="imprimir" class="btn btn-primary">Imprimir</button></center>
+            
+          </form>
 </body>
 </html>
 <?php if(isset($db)) { $db->db_disconnect(); } ?>
