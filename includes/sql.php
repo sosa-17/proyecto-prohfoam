@@ -30,6 +30,34 @@ function datos($id) {
 }
 
 /*-------------------------------------------------------------------*/
+/*funcion para optener los pedidos del cliente*/
+/*-------------------------------------------------------------------*/
+
+function pedidosC($clientes) {
+    global $db;
+   $cli= (int)$clientes;
+      $resultas = array();
+      $sql ="SELECT p.numero,p.fecha,p.comentarios,p.total_venta,u.nombre_usuario FROM pedidos p INNER JOIN usuarios u ON u.id=p.id_vendedor WHERE p.id_usuario=$cli";
+      $result = find_by_sql($sql);
+      return $result;
+}
+
+
+/*-------------------------------------------------------------------*/
+/*funcion para optener los pedidos del cliente por fecha*/
+/*-------------------------------------------------------------------*/
+
+function pedidosFecha($fechI,$fechF,$clientes) {
+    global $db;
+    $cli= (int)$clientes;
+    $resultas = array();
+    $sql ="SELECT p.numero,p.fecha,p.comentarios,p.total_venta,u.nombre_usuario FROM pedidos p INNER JOIN usuarios u ON u.id=p.id_vendedor WHERE p.id_usuario=$cli AND p.fecha BETWEEN '$fechI' AND '$fechF'";
+    $result = find_by_sql($sql);
+    return $result;
+}
+
+
+/*-------------------------------------------------------------------*/
 /*funcion para optener el maximo id de usuarios*/
 /*-------------------------------------------------------------------*/
 

@@ -22,6 +22,13 @@
        <span>Catalogo</span>
       </a>
   </li>
+
+  <li>
+    <a href="pedidosCliente.php" class="submenu-toggle">
+      <i class="glyphicon glyphicon-edit"></i>
+       <span>Mis Pedidos</span>
+      </a>
+  </li>
   <!--<li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-signal"></i>
