@@ -104,6 +104,23 @@ function find_by_id($table,$id)
             return null;
      }
 }
+
+
+/*--------------------------------------------------------------*/
+/* borrar proveedor
+/*--------------------------------------------------------------*/
+function delete_by_ids($table,$id)
+{
+  global $db;
+  if(tableExists($table))
+   {
+    $sql = "DELETE FROM ".$db->escape($table);
+    $sql .= " WHERE proveedores_id=". $db->escape($id);
+    $sql .= " LIMIT 1";
+    $db->query($sql);
+    return ($db->affected_rows() === 1) ? true : false;
+   }
+}
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
 /*--------------------------------------------------------------*/

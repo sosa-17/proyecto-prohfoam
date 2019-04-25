@@ -12,12 +12,27 @@
  $productos_sold   = find_higest_saleing_product('3');
  $recent_productos = find_recent_product_added('5');
  $recent_ventas    = find_recent_sale_added('5');
+
+$servername="localhost";
+$database="basenueva123";
+$username="morazan";
+$contra="morazan";
+$connn=mysqli_connect($servername,$username,$contra,$database);
+
+ $count=mysqli_query($connn,"SELECT COUNT(*) total FROM pedidos WHERE estado_pedido='0'");
+     $fila=mysqli_fetch_assoc($count);
+
 ?>
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
-   <div class="col-md-6">
-     <?php echo display_msg($msg); ?>
+   <div class="col-md-12">
+    <?php if ($fila['total']==0) {
+      
+    }else{ ?> <div class="alert-success">
+        <h2>Tiene <?php echo $fila['total']; ?> pedidos pendientes</h2>
+    </div>
+    <?php } ?>
    </div>
 </div>
   <div class="row">

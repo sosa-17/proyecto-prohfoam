@@ -1,3 +1,13 @@
+<?php 
+  $servername="localhost";
+$database="basenueva123";
+$username="morazan";
+$contra="morazan";
+$connn=mysqli_connect($servername,$username,$contra,$database);
+
+ $count=mysqli_query($connn,"SELECT COUNT(*) total FROM pedidos WHERE estado_pedido='0'");
+     $fila=mysqli_fetch_assoc($count);
+ ?>
 <ul>
   <li>
     <a href="admin.php">
@@ -52,7 +62,9 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-shopping-cart"></i>
-      <span>Facturacion</span>
+      <span>Facturacion  <?php if ($fila['total']==0) {
+      
+    }else{  echo "(".$fila['total'].")";} ?></span>
     </a>
     <ul class="nav submenu">
        <li><a href="factura.php">Nueva Factura</a> </li>
