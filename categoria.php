@@ -29,6 +29,7 @@
 ?>
 <?php include_once('layouts/header.php'); ?>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
@@ -48,7 +49,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="categorie-name" placeholder="Nombre de la categoría" required>
             </div>
-            <button type="submit" name="add_cat" class="btn btn-primary">Agregar categoría</button>
+            <button type="button" name="add_cat" class="btn btn-primary" id="add_cat" disabled >Agregar categoría</button>
         </form>
         </div>
       </div>
@@ -95,4 +96,5 @@
     </div>
    </div>
   </div>
+  <script type="text/javascript" src="js/validar_actualizar_categoria.js"></script>
   <?php include_once('layouts/footer.php'); ?>

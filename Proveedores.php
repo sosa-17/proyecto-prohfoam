@@ -9,6 +9,8 @@
 ?>
 <script src="js/jquery.min.js"></script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <div class="row">
    <div class="col-md-12">
    </div>
@@ -39,7 +41,7 @@
   </div>
 	</form>
   
-    <button type="button" class="btn btn-raised btn-primary" id="btn-enviar">Agregar</button>
+    <button type="button" class="btn btn-raised btn-primary" id="btn-enviar" disabled>Agregar</button>
   </br>
 </br>
       <!--<table class="table table-bordered">
@@ -79,5 +81,7 @@
 </div>
 <script type="text/javascript" src="js/proveedor.js"></script>
 <script type="text/javascript" src="js/lista_proveedores.js"></script>
+<script type="text/javascript" src="js/validar.js"></script>
+
 
 

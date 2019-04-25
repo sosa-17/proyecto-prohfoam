@@ -15,7 +15,7 @@
   define( 'DB_HOST', 'localhost' );          // Set database 
   define( 'DB_USER', 'root' );             // Set database user
   define( 'DB_PASS', '' );             // Set database password
-  define( 'DB_NAME', 'basenueva123' );        // Set database name
+  define( 'DB_NAME', 'orlando' );        // Set database name
 
 
 ?>
